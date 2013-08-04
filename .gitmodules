@@ -19,3 +19,6 @@
 [submodule "modules/ruby"]
 	path = modules/ruby
 	url = git@github.com:puppetlabs/puppetlabs-ruby.git
+[submodule "modules/kibana3"]
+	path = modules/kibana3
+	url = git@github.com:arioch/puppet-kibana3.git
