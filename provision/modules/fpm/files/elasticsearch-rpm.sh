@@ -4,7 +4,7 @@
 #yum -y install java-1.7.0-openjdk
 
 # ElasticSearch!
-VERSION=0.20.5
+VERSION=0.20.6
 PREFIX=/opt
 ES_DIR=$PREFIX/elasticsearch
 ES_USER=elasticsearch

@@ -3,7 +3,7 @@
 #install pre-reqs
 #yum -y install java-1.7.0-openjdk
 
-VERSION=1.1.9
+VERSION=1.1.13
 LS_DIR=/usr/share/logstash
 
 mkdir -p $LS_DIR/tmp
@@ -11,8 +11,8 @@ mkdir -p /var/log/logstash
 
 cd $LS_DIR
 
-wget https://logstash.objects.dreamhost.com/release/logstash-$VERSION-monolithic.jar
-mv logstash-$VERSION-monolithic.jar logstash.jar
+wget https://logstash.objects.dreamhost.com/release/logstash-$VERSION-flatjar.jar
+mv logstash-$VERSION-flatjar.jar logstash.jar
 
 #curl http://cookbook.logstash.net/recipes/using-init/logstash.sh > /etc/init.d/logstash
 

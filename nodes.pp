@@ -87,6 +87,12 @@ node 'logstash' {
   }
   package { 'ruby-devel':     ensure => 'present',  }
   package { 'gcc-c++'   :     ensure => 'present',  }
+  package { 'httpd'     :     ensure => 'present',  }
+  service { 'httpd':
+    enable => 'true',
+    ensure => 'true',
+    require => Package['httpd'],
+  }
   # puppet-upstart on centos broken ...   dodgy it.
   exec { kibana-web :
         cwd        => '/tmp',
@@ -102,6 +108,9 @@ node 'logstash' {
   class { 'kibana': 
     require => Package ['ruby-devel', 'gcc-c++', 'git'],
   }
+  class { 'kibana3':
+    require => Package ['httpd', 'git'],
+  }
 }
 
 #########################
@@ -114,14 +123,16 @@ node 'logstash-twitter' {
   class { 'logstash': 
   }
   logstash::input::twitter { 'twitter':
-    path      => ['/var/log/messages'],
+    #path      => ['/var/log/messages'],
     type      => 'twitter',
     keywords  => ['bieber'],
-    user      => 'USERNAME'
+    user      => 'USERNAME',
     password  => '*****'
   }
   logstash::output::elasticsearch { 'twitter':
-    embedded => true,
+    embedded => false,
+    host => 'elasticsearch',
+    cluster => 'logstash',
     type => 'twitter',
   }
   package { 'ruby-devel':     ensure => 'present',  }
